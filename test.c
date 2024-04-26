@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:45:26 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/04/26 21:09:57 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/04/26 21:17:45 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	main()
 		tt_ex(map.str, map);
 		mlx_do_sync(map.mlx);
 	}
+	free_s(map.str);
 	//free_v(map.player);
 	//free_v(map.coins);
 	//free_v(map.p_id);
