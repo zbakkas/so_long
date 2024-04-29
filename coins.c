@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:34:42 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/04/25 14:34:44 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/04/28 11:36:49 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ void	**coins_an(void *mlx)
 	c = (void **)malloc(6 * sizeof(void *));
 	c[0] = mlx_xpm_file_to_image(mlx, "./image/coin_1.xpm", &width, &height);
 	if (!c[0])
-		return (NULL);
+		return (free(c), NULL);
 	c[1] = mlx_xpm_file_to_image(mlx, "./image/coin_2.xpm", &width, &height);
 	if (!c[1])
-		return (NULL);
+		return (free(c), NULL);
 	c[2] = mlx_xpm_file_to_image(mlx, "./image/coin_3.xpm", &width, &height);
 	if (!c[2])
-		return (NULL);
+		return (free(c), NULL);
 	c[3] = mlx_xpm_file_to_image(mlx, "./image/coin_4.xpm", &width, &height);
 	if (!c[3])
-		return (NULL);
+		return (free(c), NULL);
 	c[4] = mlx_xpm_file_to_image(mlx, "./image/coin_5.xpm", &width, &height);
 	if (!c[4])
-		return (NULL);
+		return (free(c), NULL);
 	c[5] = mlx_xpm_file_to_image(mlx, "./image/coin_6.xpm", &width, &height);
 	if (!c[5])
-		return (NULL);
+		return (free(c), NULL);
 	return (c);
 }
 

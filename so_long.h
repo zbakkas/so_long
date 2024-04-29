@@ -6,71 +6,83 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:14:30 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/04/26 21:08:48 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/04/28 19:56:48 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
-#include "mlx.h"
-#include "libft/libft.h"
+# include "mlx.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
 
-typedef struct	s_map {
- void *wall;
- void *wall_l;
- void *wall_R ;
- void *wall_down ;
- void *wall_o ;
- void *wall_R_UP ;
- void *wall_l_UP ;
- void *door ;
- void *door_open ;
-// void *coins ;
- void **player;
- void *bk;
- int p_p[4];
-int idle_f;
-int idle_k;
-int direction;
-int frem_coins;
-int coins_cou;
+typedef struct s_map {
+	void	**player;
+	void	**p_id;
+	void	*wall;
+	void	*wall_l;
+	void	*wall_r;
+	void	*wall_down;
+	void	*wall_o;
+	void	*wall_r_up;
+	void	*wall_l_up;
+	void	*door;
+	void	*door_open;
+	void	*bk;
+	void	*mlx;
+	void	*win;
+	void	**coins;
+	char	*lains;
+	char	**str;
+	int		fd;
+	int		mov_cou;
+	int		p_p[4];
+	int		idle_f;
+	int		idle_k;
+	int		direction;
+	int		frem_coins;
+	int		coins_cou;
+}	t_map;
 
-    void *mlx;
-    void *win;
-    int fd;
-    char **str;
-    void **p_id;
-    void **coins;
-    int mov_cou;
-
-}				t_map;
 //player
-void **player_an(void * mlx);
-void **player_idell(void * mlx);
-int deal_key(int key ,t_map *map);
-void p_palyer(void *mlx, void *win,int *p_p ,char **maap);
-void idle_f_f(int *idle_f);
+void	**player_an(void *mlx);
+void	**player_idell(void *mlx);
+int		deal_key(int key, t_map *map);
+void	p_palyer(int *p_p, char **maap);
+void	idle_f_f(int *idle_f);
 //coins
-void **coins_an(void * mlx);
-int get_conis_in_map(char **str);
-void get_coins(char **str,int *p_p,int *coins);
+void	**coins_an(void *mlx);
+int		get_conis_in_map(char **str);
+void	get_coins(char **str, int *p_p, int *coins);
 void	p_coins(t_map map);
 //
-void p_ob(t_map map);
-void p_door(void *mlx, void *win, t_map map,char **maap);
-t_map mapp();
+void	p_ob(t_map map);
+void	p_bk(t_map map);
+void	p_door(void *mlx, void *win, t_map map, char **maap);
+t_map	mapp(char *mapstr);
 //
-int wind_size_x(char ** str);
-int wind_size_y(char ** str);
+int		wind_size_x(char **str);
+int		wind_size_y(char **str);
 ///errore
-int	check_map_len(char **str);
-int	check_walls(char **str);
-int mov_to_coins(char **str,int y ,int x,int *l);
-int mov_to_door(char **s,int y ,int x,int *l);
-int check_characters(char **str);
-int check_image(t_map map);
+int		check_map_len(char **str);
+int		check_walls(char **str);
+int		mov_to_coins(char **str, int y, int x, int *l);
+int		mov_to_door(char **s, int y, int x, int *l);
+int		check_characters(char **str);
+int		check_image(t_map map);
+int		get_last_line(char **str);
 ///
 void	free_s(char **s);
-void	free_v(void **s);
+//void	free_v(void **s,void *mlx);
+
+int		check_move_to(t_map map);
+int		check_obj(t_map map);
+//
+int		ft_strlen(const char *s);
+char	*get_next_line(int fd);
+char	**ft_split(char const *s, char c);
+char	*ft_strdup(const char *s1);
 #endif

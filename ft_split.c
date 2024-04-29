@@ -6,16 +6,16 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:07:07 by zbakkas           #+#    #+#             */
-/*   Updated: 2023/12/23 16:39:11 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/04/28 19:41:39 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
 static	int	c_word(char const *s, char c)
 {
-	size_t	x;
-	int		re;
+	int	x;
+	int	re;
 
 	x = 0;
 	re = 0;
