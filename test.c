@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:45:26 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 12:44:53 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/01 17:48:05 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,44 @@ void	whilee_loop(t_map *map, int *counter)
 	tt_ex((*map).str, (*map));
 	mlx_do_sync((*map).mlx);
 }
+void    free_images(void *mlx,void **images, int num_images)
+{
+    for (int i = 0; i < num_images; i++)
+    {
+        if (images[i])
+            mlx_destroy_image(mlx,images[i]);
+    }
+    free(images);
+}
 
+void    free_map(t_map *map)
+{
+	if(map->wall)
+    	mlx_destroy_image(map->mlx,map->wall);
+	if(map->wall_l)
+		mlx_destroy_image(map->mlx,map->wall_l);
+	if(map->wall_r)
+		mlx_destroy_image(map->mlx,map->wall_r);
+	if(map->wall_down)
+    	mlx_destroy_image(map->mlx,map->wall_down);
+	if(map->wall_o)
+		mlx_destroy_image(map->mlx,map->wall_o);
+	if(map->wall_r_up)
+		mlx_destroy_image(map->mlx,map->wall_r_up);
+	if(map->wall_l_up)
+	mlx_destroy_image(map->mlx,map->wall_l_up);
+	mlx_destroy_image(map->mlx,map->door);
+	mlx_destroy_image(map->mlx,map->door_open);
+	mlx_destroy_image(map->mlx,map->bk);
+	free_images(map->mlx,map->player, 4);
+    free_images(map->mlx,map->coins, 6);
+	free_images(map->mlx,map->p_id, 10);
+	
+    free_s(map->str);
+	mlx_destroy_window(map->mlx, map->win);
+	free(map->mlx);
+	close(map->fd);
+}
 int	main( int arv, char **arc)
 {
 	atexit(ll);
@@ -68,11 +105,11 @@ int	main( int arv, char **arc)
 
 	if (arv > 2 || arv < 2)
 		return (write(2, "Error\n", 6), 0);
-	map = mapp(arc[1]);
+
+	mapp(arc[1],&map);
 	counter = 2;
 	if (check_obj(map))
-		return (free(map.player), free(map.coins),
-			free(map.p_id), free_s(map.str), write(2, "Error\n", 6), 0);
+		return (free_map(&map), write(2, "Er00ror\n", 8), 0);
 	map.coins_cou = get_conis_in_map(map.str);
 	p_palyer(map.p_p, map.str);
 	if (check_move_to(map))
