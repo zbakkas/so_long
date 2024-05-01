@@ -6,11 +6,11 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:05:23 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/04/29 13:51:27 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/04/29 14:44:44 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static int	ffdor(char **str, int y, int x, int *l)
 {

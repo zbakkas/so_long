@@ -6,11 +6,11 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:34:55 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/04/30 21:43:16 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/04/30 21:42:59 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	ft_strlen(const char *s)
 {
@@ -36,7 +36,7 @@ static void	ft_bzero(void *s, size_t n)
 	}
 }
 
-static void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	char	*res;
 

@@ -6,11 +6,11 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:19:49 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/04/29 14:50:18 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/04/30 21:51:43 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	**player_an(void *mlx)
 {
@@ -91,8 +91,7 @@ int	deal_key_to(int key, t_map *map)
 	if ((key == 123 || key == 0) 
 		&& (*map).str[(*map).p_p[3]][(*map).p_p[2] - 1] != '1')
 	{
-		ft_putnbr_fd(++map->mov_cou, 1);
-		write(1, "\n", 1);
+		map->mov_cou++;
 		(*map).idle_k = 1;
 		(*map).direction = 2;
 		(*map).p_p[2] -= 1;
@@ -101,8 +100,7 @@ int	deal_key_to(int key, t_map *map)
 	if ((key == 124 || key == 2) 
 		&& (*map).str[(*map).p_p[3]][(*map).p_p[2] + 1] != '1')
 	{
-		ft_putnbr_fd(++map->mov_cou, 1);
-		write(1, "\n", 1);
+		map->mov_cou++;
 		(*map).idle_k = 1;
 		(*map).direction = 3;
 		(*map).p_p[2] += 1;
@@ -118,8 +116,7 @@ int	deal_key(int key, t_map *map)
 	if ((key == 126 || key == 13) && 
 		(*map).str[(*map).p_p[3] - 1][(*map).p_p[2]] != '1')
 	{
-		ft_putnbr_fd(++map->mov_cou, 1);
-		write(1, "\n", 1);
+		map->mov_cou++;
 		(*map).idle_k = 1;
 		(*map).direction = 0;
 		(*map).p_p[3] -= 1;
@@ -128,8 +125,7 @@ int	deal_key(int key, t_map *map)
 	if ((key == 125 || key == 1) 
 		&& (*map).str[(*map).p_p[3] + 1][(*map).p_p[2]] != '1')
 	{
-		ft_putnbr_fd(++map->mov_cou, 1);
-		write(1, "\n", 1);
+		map->mov_cou++;
 		(*map).idle_k = 1;
 		(*map).direction = 1;
 		(*map).p_p[3] += 1;

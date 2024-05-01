@@ -6,11 +6,11 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 17:45:19 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 11:14:20 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/01 13:01:34 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	mapp_p(t_map *map)
 {
@@ -44,7 +44,7 @@ static void	mapp_p(t_map *map)
 t_map	mapp(char *mapstr)
 {
 	t_map	map;
-
+  	
 	map.fd = open(mapstr, O_RDONLY);
 	map.lains = get_next_line(map.fd);
 	map.str = ft_split(map.lains, '\n');
@@ -62,6 +62,8 @@ t_map	mapp(char *mapstr)
 	map.p_id = player_idell(map.mlx);
 	map.coins = coins_an(map.mlx);
 	map.mov_cou = 0;
+	map.enemy_an = enemyy_an(map.mlx);
+	allocation_enemy(&map);
 	return (map);
 }
 
@@ -78,4 +80,45 @@ void	free_s(char **s)
 		i++;
 	}
 	free(s);
+}
+
+t_map ans()
+{
+	t_map map ;
+	
+	map.player =NULL;
+	map.p_id=NULL;    
+	map.wall=NULL;
+	map.wall_l=NULL;
+	map.wall_r=NULL;
+	map.wall_down=NULL;
+	map.wall_o=NULL;
+	map.wall_r_up=NULL;
+	map.wall_l_up=NULL;
+	map.door=NULL;
+	map.door_open=NULL;
+	map.bk=NULL;
+	map.mlx=NULL;
+	map.win=NULL;
+	map.coins=NULL;
+	map.enmey_p=0;
+
+	map.enemy_an=NULL;
+
+	map.enemy_f=0;
+
+	map.lains=NULL;
+	map.str=NULL;
+	map.fd=0;
+	map.mov_cou=0;
+	map.p_p[0]=0;
+	map.p_p[1]=0;
+	map.p_p[2]=0;
+	map.p_p[3]=0;
+	map.idle_f=0;
+	map.idle_k=0;
+	map.direction=0;
+	map.frem_coins=0;
+	map.coins_cou=0;
+return map;
 }

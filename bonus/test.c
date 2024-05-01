@@ -6,11 +6,11 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:45:26 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 12:44:53 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/01 12:58:58 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	tt_ex(char **str, t_map map)
 {
@@ -35,7 +35,7 @@ void	ll(void)
 
 void	whilee_loop(t_map *map, int *counter)
 {
-	mlx_clear_window((*map).mlx, (*map).win);
+	mov_enemis(map);
 	p_bk(*map);
 	idle_f_f(&(*map).idle_f);
 	p_ob((*map));
@@ -55,8 +55,10 @@ void	whilee_loop(t_map *map, int *counter)
 		mlx_put_image_to_window((*map).mlx, (*map).win, 
 			(*map).p_id[(*map).idle_f], (*map).p_p[0], (*map).p_p[1]);
 	(*map).frem_coins = ((*map).frem_coins + 1) % 6;
+	put_enemy(map);
 	p_coins((*map));
 	tt_ex((*map).str, (*map));
+	draw_score(map->mlx, map->win, map->mov_cou);
 	mlx_do_sync((*map).mlx);
 }
 
@@ -65,15 +67,16 @@ int	main( int arv, char **arc)
 	atexit(ll);
 	t_map	map;
 	int		counter;
-
 	if (arv > 2 || arv < 2)
 		return (write(2, "Error\n", 6), 0);
+	//map =	ans();
 	map = mapp(arc[1]);
 	counter = 2;
 	if (check_obj(map))
-		return (free(map.player), free(map.coins),
+		return (free(map.player), free(map.coins),free(map.enemy_an), free(map.enemy_f),free_enemy(&map),
 			free(map.p_id), free_s(map.str), write(2, "Error\n", 6), 0);
 	map.coins_cou = get_conis_in_map(map.str);
+	p_enemeis(map);
 	p_palyer(map.p_p, map.str);
 	if (check_move_to(map))
 		return (free(map.player), free(map.coins), free(map.p_id),
@@ -81,5 +84,8 @@ int	main( int arv, char **arc)
 	mlx_hook(map.win, 2, 1L << 0, deal_key, &map);
 	mlx_hook(map.win, 17, 0, close_button_click, NULL);
 	while (1)
+	{
+		mlx_clear_window(map.mlx, map.win);
 		whilee_loop(&map, &counter);
+	}
 }

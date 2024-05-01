@@ -6,11 +6,11 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:43:23 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 11:13:30 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/01 11:00:13 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	check_map_len(char **str)
 {
