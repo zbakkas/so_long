@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 17:45:19 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 17:27:21 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/01 21:40:24 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,32 @@ static void	mapp_p(t_map *map)
 
 //map.direction = 0;// 0: up, 1: down, 2: left, 3: right
 
-t_map	mapp(char *mapstr)
+void	mapp(char *mapstr, t_map *map)
 {
-	t_map	map;
-  	
-	map.fd = open(mapstr, O_RDONLY);
-	map.lains = get_next_line(map.fd);
-	map.str = ft_split(map.lains, '\n');
-	free(map.lains);
-	map.mlx = mlx_init();
-	map.win = mlx_new_window(map.mlx, wind_size_x(map.str),
-			wind_size_y(map.str), "map1");
-	mapp_p(&map);
-	map.idle_k = 0;
-	map.idle_f = 0;
-	map.direction = 0;
-	map.player = player_an(map.mlx);
-	map.frem_coins = 0;
-	map.coins_cou = 0;
-	map.p_id = player_idell(map.mlx);
-	map.coins = coins_an(map.mlx);
-	map.mov_cou = 0;
-	map.enemy_an = enemyy_an(map.mlx);
-	allocation_enemy(&map);
-	return (map);
+	map->fd = open(mapstr, O_RDONLY);
+	map->lains = get_next_line(map->fd);
+	map->str = ft_split(map->lains, '\n');
+	if (!map->str[0])
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
+	free(map->lains);
+	map->mlx = mlx_init();
+	map->win = mlx_new_window(map->mlx, wind_size_x(map->str), 
+			wind_size_y(map->str), "map1");
+	mapp_p(map);
+	map->idle_k = 0;
+	map->idle_f = 0;
+	map->direction = 0;
+	map->player = player_an(map->mlx);
+	map->frem_coins = 0;
+	map->coins_cou = 0;
+	map->p_id = player_idell(map->mlx);
+	map->coins = coins_an(map->mlx);
+	map->mov_cou = 0;
+	map->enemy_an = enemyy_an(map->mlx);
+	allocation_enemy(map);
 }
 
 void	free_s(char **s)
@@ -82,43 +84,55 @@ void	free_s(char **s)
 	free(s);
 }
 
-// t_map ans()
-// {
-// 	t_map map ;
-	
-// 	map.player =NULL;
-// 	map.p_id=NULL;    
-// 	map.wall=NULL;
-// 	map.wall_l=NULL;
-// 	map.wall_r=NULL;
-// 	map.wall_down=NULL;
-// 	map.wall_o=NULL;
-// 	map.wall_r_up=NULL;
-// 	map.wall_l_up=NULL;
-// 	map.door=NULL;
-// 	map.door_open=NULL;
-// 	map.bk=NULL;
-// 	map.mlx=NULL;
-// 	map.win=NULL;
-// 	map.coins=NULL;
-// 	map.enmey_p=0;
+static void	free_map_tow(t_map *map)
+{
+	if (map->wall)
+		mlx_destroy_image(map->mlx, map->wall);
+	if (map->wall_l) 
+		mlx_destroy_image(map->mlx, map->wall_l);
+	if (map->wall_r) 
+		mlx_destroy_image(map->mlx, map->wall_r);
+	if (map->wall_down) 
+		mlx_destroy_image(map->mlx, map->wall_down);
+	if (map->wall_o) 
+		mlx_destroy_image(map->mlx, map->wall_o);
+	if (map->wall_r_up) 
+		mlx_destroy_image(map->mlx, map->wall_r_up);
+	if (map->wall_l_up) 
+		mlx_destroy_image(map->mlx, map->wall_l_up);
+	if (map->door) 
+		mlx_destroy_image(map->mlx, map->door);
+	if (map->door_open) 
+		mlx_destroy_image(map->mlx, map->door_open);
+	if (map->bk) 
+		mlx_destroy_image(map->mlx, map->bk);
+}
 
-// 	map.enemy_an=NULL;
+void	free_map(t_map *map, int i)
+{
+	int	x;
+	int	t;
 
-// 	map.enemy_f=0;
-
-// 	map.lains=NULL;
-// 	map.str=NULL;
-// 	map.fd=0;
-// 	map.mov_cou=0;
-// 	map.p_p[0]=0;
-// 	map.p_p[1]=0;
-// 	map.p_p[2]=0;
-// 	map.p_p[3]=0;
-// 	map.idle_f=0;
-// 	map.idle_k=0;
-// 	map.direction=0;
-// 	map.frem_coins=0;
-// 	map.coins_cou=0;
-// return map;
-// }
+	x = 0;
+	t = coun_enemy(*map);
+	free_map_tow(map);
+	if (map->player) 
+		free_images(map->mlx, map->player, 4);
+	if (map->coins)
+		free_images(map->mlx, map->coins, 6);
+	if (map->p_id)
+		free_images(map->mlx, map->p_id, 10);
+	if (map->enemy_an)
+		free_images(map->mlx, map->enemy_an, 2);
+	free_s(map->str);
+	mlx_destroy_window(map->mlx, map->win);
+	if (t > 0)
+		free(map->enemy_f);
+	while (t > x)
+		free(map->enmey_p[x++]);
+	if (t > 0)
+		free(map->enmey_p);
+	if (i == 1)
+		write(2, "Error\n", 6);
+	exit(1);
+}

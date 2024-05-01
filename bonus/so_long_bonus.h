@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:14:30 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 12:58:07 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/01 21:47:55 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,9 @@ typedef struct s_map {
 	void	*mlx;
 	void	*win;
 	void	**coins;
-
-void	**enemy_an;
+	void	**enemy_an;
 	int		**enmey_p;
-
-	
-	
-	
 	int		*enemy_f;
-		
 	char	*lains;
 	char	**str;
 	int		fd;
@@ -54,9 +48,6 @@ void	**enemy_an;
 	int		direction;
 	int		frem_coins;
 	int		coins_cou;
-
-	
-
 }	t_map;
 
 //player
@@ -74,7 +65,7 @@ void	p_coins(t_map map);
 void	p_ob(t_map map);
 void	p_bk(t_map map);
 void	p_door(void *mlx, void *win, t_map map, char **maap);
-t_map	mapp(char *mapstr);
+void	mapp(char *mapstr, t_map *map);
 //
 int		wind_size_x(char **str);
 int		wind_size_y(char **str);
@@ -114,9 +105,6 @@ char	*ft_itoa(int n);
 void	draw_score(void *mlx, void *win, int move);
 void	allocation_enemy(t_map *map);
 void	free_enemy(t_map *map);
-
-
-
-
-t_map ans();
+void	free_map(t_map *map, int i);
+void	free_images(void *mlx, void **images, int num_images);
 #endif

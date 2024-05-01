@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 17:45:19 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 17:37:15 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/01 21:04:29 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,20 @@ static void	mapp_p(t_map *map)
 
 //map.direction = 0;// 0: up, 1: down, 2: left, 3: right
 
-void	mapp(char *mapstr ,t_map *map)
+void	mapp(char *mapstr, t_map *map)
 {
-	//t_map	map;
-
 	map->fd = open(mapstr, O_RDONLY);
 	map->lains = get_next_line(map->fd);
 	map->str = ft_split(map->lains, '\n');
+	if (!map->str[0])
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
 	free(map->lains);
 	map->mlx = mlx_init();
-	map->win = mlx_new_window(map->mlx, wind_size_x(map->str),wind_size_y(map->str), "map1");
+	map->win = mlx_new_window(map->mlx, wind_size_x(map->str), 
+			wind_size_y(map->str), "map1");
 	mapp_p(map);
 	map->idle_k = 0;
 	map->idle_f = 0;
@@ -61,7 +65,6 @@ void	mapp(char *mapstr ,t_map *map)
 	map->p_id = player_idell(map->mlx);
 	map->coins = coins_an(map->mlx);
 	map->mov_cou = 0;
-	//return (map);
 }
 
 void	free_s(char **s)
@@ -77,4 +80,45 @@ void	free_s(char **s)
 		i++;
 	}
 	free(s);
+}
+
+static void	free_map_tow(t_map *map)
+{
+	if (map->wall)
+		mlx_destroy_image(map->mlx, map->wall);
+	if (map->wall_l) 
+		mlx_destroy_image(map->mlx, map->wall_l);
+	if (map->wall_r) 
+		mlx_destroy_image(map->mlx, map->wall_r);
+	if (map->wall_down) 
+		mlx_destroy_image(map->mlx, map->wall_down);
+	if (map->wall_o) 
+		mlx_destroy_image(map->mlx, map->wall_o);
+	if (map->wall_r_up) 
+		mlx_destroy_image(map->mlx, map->wall_r_up);
+	if (map->wall_l_up) 
+		mlx_destroy_image(map->mlx, map->wall_l_up);
+	if (map->door) 
+		mlx_destroy_image(map->mlx, map->door);
+	if (map->door_open) 
+		mlx_destroy_image(map->mlx, map->door_open);
+	if (map->bk) 
+		mlx_destroy_image(map->mlx, map->bk);
+}
+
+void	free_map(t_map *map, int i)
+{
+	free_map_tow(map);
+	if (map->player) 
+		free_images(map->mlx, map->player, 4);
+	if (map->coins)
+		free_images(map->mlx, map->coins, 6);
+	if (map->p_id)
+		free_images(map->mlx, map->p_id, 10);
+	free_s(map->str);
+	mlx_destroy_window(map->mlx, map->win);
+	//free(map->mlx);
+	if (i == 1)
+		write(2, "Error\n", 6);
+	exit(1);
 }

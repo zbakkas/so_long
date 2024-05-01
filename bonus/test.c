@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:45:26 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 12:58:58 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/01 21:49:15 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ int	close_button_click(void)
 void	ll(void)
 {
 	system("leaks so_long");
+}
+
+void	free_images(void *mlx, void **images, int num_images)
+{
+	int	i;
+
+	i = 0;
+	while (i < num_images)
+	{
+		if (images[i])
+			mlx_destroy_image(mlx, images[i]);
+		i++;
+	}
+	free(images);
 }
 
 void	whilee_loop(t_map *map, int *counter)
@@ -67,20 +81,18 @@ int	main( int arv, char **arc)
 	atexit(ll);
 	t_map	map;
 	int		counter;
+
 	if (arv > 2 || arv < 2)
 		return (write(2, "Error\n", 6), 0);
-	//map =	ans();
-	map = mapp(arc[1]);
+	mapp(arc[1], &map);
 	counter = 2;
 	if (check_obj(map))
-		return (free(map.player), free(map.coins),free(map.enemy_an), free(map.enemy_f),free_enemy(&map),
-			free(map.p_id), free_s(map.str), write(2, "Error\n", 6), 0);
+		free_map(&map, 1);
 	map.coins_cou = get_conis_in_map(map.str);
 	p_enemeis(map);
 	p_palyer(map.p_p, map.str);
 	if (check_move_to(map))
-		return (free(map.player), free(map.coins), free(map.p_id),
-			free_s(map.str), write(2, "Error\n", 6), 0);
+		free_map(&map, 1);
 	mlx_hook(map.win, 2, 1L << 0, deal_key, &map);
 	mlx_hook(map.win, 17, 0, close_button_click, NULL);
 	while (1)
