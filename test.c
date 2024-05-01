@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:45:26 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 21:07:16 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/01 22:13:55 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ int	main( int arv, char **arc)
 		return (write(2, "Error\n", 6), 0);
 	mapp(arc[1], &map);
 	counter = 2;
-	if (check_obj(map))
+	if (check_obj(map) || wind_size_x(map.str) > 2560 
+		|| wind_size_y(map.str) >1408)
 		free_map(&map, 1);
 	map.coins_cou = get_conis_in_map(map.str);
 	p_palyer(map.p_p, map.str);
