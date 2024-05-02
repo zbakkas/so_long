@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemy.c                                            :+:      :+:    :+:   */
+/*   enemy_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:11 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 11:15:24 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/02 12:39:55 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	**enemyy_an(void *mlx)
 
 	x = 0;
 	p = (void **)malloc(2 * sizeof(void *));
-	p[0] = mlx_xpm_file_to_image(mlx, "ghost_l.xpm", &width, &height);
+	p[0] = mlx_xpm_file_to_image(mlx, "./image/ghost_l.xpm", &width, &height);
 	if (!p[0])
 		return (free(p), NULL);
-	p[1] = mlx_xpm_file_to_image(mlx, "ghost_r.xpm", &width, &height);
+	p[1] = mlx_xpm_file_to_image(mlx, "./image/ghost_r.xpm", &width, &height);
 	if (!p[1])
 		return (free(p), NULL);
 	return (p);

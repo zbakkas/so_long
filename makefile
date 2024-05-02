@@ -7,14 +7,14 @@ MLXF = -lmlx -framework OpenGL -framework AppKit
 
 # gcc -g test.c mov_player.c coins.c game_objects.c  manage_game.c  check_errore.c check_move_to.c check_errore_to.c  map_and_free.c move_player_to.c ft_split.c ft_strdup.c get_next_line.c   -lmlx -framework OpenGL -framework AppKit   -o so_long ;./so_long
 
-SRC = test.c move_player_to.c mov_player.c get_next_line.c game_objects.c \
+SRC = mainn.c move_player_to.c mov_player.c get_next_line.c game_objects.c \
 		ft_strdup.c ft_split.c coins.c check_move_to.c check_errore.c \
 		check_errore_tow.c map_and_free.c manage_game.c ft_putnbr_fd.c\
 
-SRC_B =  ./bonus/test.c ./bonus/move_player_to.c ./bonus/mov_player.c ./bonus/get_next_line.c ./bonus/game_objects.c \
-		./bonus/ft_strdup.c ./bonus/ft_split.c ./bonus/coins.c ./bonus/check_move_to.c ./bonus/check_errore.c \
-		./bonus/check_errore_tow.c ./bonus/map_and_free.c ./bonus/manage_game.c ./bonus/ft_putnbr_fd.c ./bonus/enemy.c\
-		./bonus/ft_itoa.c  ./bonus/enemy_tow.c\
+SRC_B =  ./bonus/mainn_bonus.c ./bonus/move_player_to_bonus.c ./bonus/mov_player_bonus.c ./bonus/get_next_line_bonus.c ./bonus/game_objects_bonus.c \
+		./bonus/ft_strdup_bonus.c ./bonus/ft_split_bonus.c ./bonus/coins_bonus.c ./bonus/check_move_to_bonus.c ./bonus/check_errore_bonus.c \
+		./bonus/check_errore_tow_bonus.c ./bonus/map_and_free_bonus.c ./bonus/manage_game_bonus.c ./bonus/ft_putnbr_fd_bonus.c ./bonus/enemy_bonus.c\
+		./bonus/ft_itoa_bonus.c  ./bonus/enemy_tow_bonus.c\
 
 OBJ = $(SRC:.c=.o)
 OBJ_B =$(SRC_B:.c=.o)

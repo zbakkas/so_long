@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:14:30 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 21:07:55 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/02 12:43:06 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
+//# include <stdio.h>
 # include <fcntl.h>
 
 typedef struct s_map {
@@ -62,7 +62,7 @@ void	p_coins(t_map map);
 void	p_ob(t_map map);
 void	p_bk(t_map map);
 void	p_door(void *mlx, void *win, t_map map, char **maap);
-void	mapp(char *mapstr,t_map *map);
+void	mapp(char *mapstr, t_map *map);
 //
 int		wind_size_x(char **str);
 int		wind_size_y(char **str);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_game.c                                      :+:      :+:    :+:   */
+/*   manage_game_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:17:24 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 12:20:33 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/02 12:41:14 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	wind_size_y(char **str)
 	return (y * 64);
 }
 
-void	draw_score(void *mlx, void *win, int move)
+void	draw_score(void *mlx, void *win, int move, char **str)
 {
-	char	*str;
+	char	*a_str;
 
-	str = ft_itoa(move);
-	mlx_string_put(mlx, win, 1, 1, 0x000000, "move:");
-	mlx_string_put(mlx, win, 64, 1, 0x000000, str);
-	free(str);
+	a_str = ft_itoa(move);
+	mlx_string_put(mlx, win, 1, wind_size_y(str)-40, 0x000000, "moves:");
+	mlx_string_put(mlx, win, 64, wind_size_y(str)-40, 0x000000, a_str);
+	free(a_str);
 }

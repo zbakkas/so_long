@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:45:26 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 22:14:36 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/02 10:18:56 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ int	close_button_click(void)
 {
 	exit(0);
 	return (0);
-}
-
-void	ll(void)
-{
-	system("leaks so_long");
 }
 
 void	free_images(void *mlx, void **images, int num_images)
@@ -72,13 +67,12 @@ void	whilee_loop(t_map *map, int *counter)
 	put_enemy(map);
 	p_coins((*map));
 	tt_ex((*map).str, (*map));
-	draw_score(map->mlx, map->win, map->mov_cou);
+	draw_score(map->mlx, map->win, map->mov_cou, map->str);
 	mlx_do_sync((*map).mlx);
 }
 
 int	main( int arv, char **arc)
 {
-	atexit(ll);
 	t_map	map;
 	int		counter;
 

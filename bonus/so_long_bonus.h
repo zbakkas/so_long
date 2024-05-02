@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:14:30 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/01 21:47:55 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/02 10:21:44 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
+//# include <stdio.h>
 # include <fcntl.h>
 
 typedef struct s_map {
@@ -102,7 +102,7 @@ int		coun_enemy(t_map map);
 void	put_enemy(t_map *map);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_itoa(int n);
-void	draw_score(void *mlx, void *win, int move);
+void	draw_score(void *mlx, void *win, int move, char **str);
 void	allocation_enemy(t_map *map);
 void	free_enemy(t_map *map);
 void	free_map(t_map *map, int i);
