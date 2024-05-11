@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_and_free.c                                     :+:      :+:    :+:   */
+/*   map_and_free_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 17:45:19 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/02 10:16:24 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/07 21:17:27 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,13 @@ static void	mapp_p(t_map *map)
 void	mapp(char *mapstr, t_map *map)
 {
 	map->fd = open(mapstr, O_RDONLY);
+	if (map->fd == -1)
+		return (write(2, "Error\n", 6), exit(1));
 	map->lains = get_next_line(map->fd);
 	map->str = ft_split(map->lains, '\n');
-	if (!map->str[0])
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
 	free(map->lains);
+	if (!map->str[0])
+		return (free(map->str), write(2, "Error\n", 6), exit(1));
 	map->mlx = mlx_init();
 	map->win = mlx_new_window(map->mlx, wind_size_x(map->str), 
 			wind_size_y(map->str), "map1");

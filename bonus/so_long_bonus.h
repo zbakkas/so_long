@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:14:30 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/02 10:21:44 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/07 21:22:26 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,7 @@ void	allocation_enemy(t_map *map);
 void	free_enemy(t_map *map);
 void	free_map(t_map *map, int i);
 void	free_images(void *mlx, void **images, int num_images);
+int		ft_strnstr(char *str);
+void	tt_ex(char **str, t_map *map);
+
 #endif

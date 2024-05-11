@@ -9,12 +9,12 @@ MLXF = -lmlx -framework OpenGL -framework AppKit
 
 SRC = mainn.c move_player_to.c mov_player.c get_next_line.c game_objects.c \
 		ft_strdup.c ft_split.c coins.c check_move_to.c check_errore.c \
-		check_errore_tow.c map_and_free.c manage_game.c ft_putnbr_fd.c\
+		check_errore_tow.c map_and_free.c manage_game.c ft_putnbr_fd.c ft_strnstr.c\
 
 SRC_B =  ./bonus/mainn_bonus.c ./bonus/move_player_to_bonus.c ./bonus/mov_player_bonus.c ./bonus/get_next_line_bonus.c ./bonus/game_objects_bonus.c \
 		./bonus/ft_strdup_bonus.c ./bonus/ft_split_bonus.c ./bonus/coins_bonus.c ./bonus/check_move_to_bonus.c ./bonus/check_errore_bonus.c \
 		./bonus/check_errore_tow_bonus.c ./bonus/map_and_free_bonus.c ./bonus/manage_game_bonus.c ./bonus/ft_putnbr_fd_bonus.c ./bonus/enemy_bonus.c\
-		./bonus/ft_itoa_bonus.c  ./bonus/enemy_tow_bonus.c\
+		./bonus/ft_itoa_bonus.c  ./bonus/enemy_tow_bonus.c ./bonus/ft_strnstr_bonus.c\
 
 OBJ = $(SRC:.c=.o)
 OBJ_B =$(SRC_B:.c=.o)

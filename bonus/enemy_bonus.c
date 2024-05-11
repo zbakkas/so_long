@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:11 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/02 12:39:55 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/07 21:21:44 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	move_enemy(t_map *map, int i)
 			&& map->p_p[3] == map->enmey_p[i][3])
 	{
 		write(1, "lose\n", 4);
-		exit(0);
+		free_map(map, 0);
 	}
 }
 

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   mainn_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:45:26 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/02 10:18:56 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/07 21:21:05 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	tt_ex(char **str, t_map map)
+void	tt_ex(char **str, t_map *map)
 {
-	if (map.coins_cou <= 0 
-		&& str[map.p_p[3]][map.p_p[2]] == 'E')
+	if (map->coins_cou <= 0 
+		&& str[map->p_p[3]][map->p_p[2]] == 'E')
 	{
 		write(1, "Win\n", 4);
-		exit(0);
+		free_map(map, 0);
 	}
 }
 
-int	close_button_click(void)
+int	close_button_click(t_map *map)
 {
-	exit(0);
+	free_map(map, 0);
 	return (0);
 }
 
@@ -66,7 +66,6 @@ void	whilee_loop(t_map *map, int *counter)
 	(*map).frem_coins = ((*map).frem_coins + 1) % 6;
 	put_enemy(map);
 	p_coins((*map));
-	tt_ex((*map).str, (*map));
 	draw_score(map->mlx, map->win, map->mov_cou, map->str);
 	mlx_do_sync((*map).mlx);
 }
@@ -76,7 +75,7 @@ int	main( int arv, char **arc)
 	t_map	map;
 	int		counter;
 
-	if (arv > 2 || arv < 2)
+	if (arv > 2 || arv < 2 || ft_strnstr(arc[1]))
 		return (write(2, "Error\n", 6), 0);
 	mapp(arc[1], &map);
 	counter = 2;

@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:19:49 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/04/29 14:50:18 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/07 20:48:51 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,14 @@ int	deal_key_to(int key, t_map *map)
 		(*map).p_p[2] += 1;
 		(*map).p_p[0] += 64; 
 	}
+	tt_ex(map->str, map);
 	return (0);
 }
 
 int	deal_key(int key, t_map *map)
 {
 	if (key == 53)
-		exit(0);
+		free_map(map, 0);
 	if ((key == 126 || key == 13) && 
 		(*map).str[(*map).p_p[3] - 1][(*map).p_p[2]] != '1')
 	{

@@ -6,25 +6,25 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 16:45:26 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/05/02 12:37:25 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/05/07 21:08:10 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	tt_ex(char **str, t_map map)
+void	tt_ex(char **str, t_map *map)
 {
-	if (map.coins_cou <= 0 
-		&& str[map.p_p[3]][map.p_p[2]] == 'E')
+	if (map->coins_cou <= 0 
+		&& str[map->p_p[3]][map->p_p[2]] == 'E')
 	{
 		write(1, "Win\n", 4);
-		exit(0);
+		free_map(map, 0);
 	}
 }
 
-int	close_button_click(void)
+int	close_button_click(t_map *map)
 {
-	exit(0);
+	free_map(map, 0);
 	return (0);
 }
 
@@ -51,7 +51,6 @@ void	whilee_loop(t_map *map, int *counter)
 			(*map).p_id[(*map).idle_f], (*map).p_p[0], (*map).p_p[1]);
 	(*map).frem_coins = ((*map).frem_coins + 1) % 6;
 	p_coins((*map));
-	tt_ex((*map).str, (*map));
 	mlx_do_sync((*map).mlx);
 }
 
@@ -74,7 +73,7 @@ int	main( int arv, char **arc)
 	t_map	map;
 	int		counter;
 
-	if (arv > 2 || arv < 2)
+	if (arv > 2 || arv < 2 || ft_strnstr(arc[1]))
 		return (write(2, "Error\n", 6), 0);
 	mapp(arc[1], &map);
 	counter = 2;
@@ -85,8 +84,8 @@ int	main( int arv, char **arc)
 	p_palyer(map.p_p, map.str);
 	if (check_move_to(map))
 		free_map(&map, 1);
-	mlx_hook(map.win, 2, 1L << 0, deal_key, &map);
-	mlx_hook(map.win, 17, 0, close_button_click, NULL);
+	mlx_hook(map.win, 2, 0, deal_key, &map);
+	mlx_hook(map.win, 17, 0, close_button_click, &map);
 	while (1)
 		whilee_loop(&map, &counter);
 	free_map(&map, 0);
